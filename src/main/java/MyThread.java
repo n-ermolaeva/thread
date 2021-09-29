@@ -22,12 +22,21 @@ public class MyThread implements Runnable {
         MyThread thread3 = new MyThread(msg, "3");
 
         thread1.thread.start();
-        thread2.thread.start();
-        thread3.thread.start();
-
         try {
             thread1.thread.join();
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted");
+        }
+
+        thread2.thread.start();
+        try {
             thread2.thread.join();
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted");
+        }
+
+        thread3.thread.start();
+        try {
             thread3.thread.join();
         } catch (InterruptedException e) {
             System.out.println("Interrupted");
